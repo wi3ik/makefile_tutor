@@ -27,6 +27,7 @@ help:
 	@echo ""
 	@echo "  all - normal full compilation to prepare resulting binary file."
 	@echo "  preproc - stop after preprocessing."
+	@echo "  asm - stop after assembler file is ready."
 	@echo ""
 
 	
@@ -38,8 +39,14 @@ preproc:
 	echo "Stop process after preprocessing."
 	$(GCC) -E $(LIB) main.c -o $(RESULT).i $(INC)
 
+asm:
+	$(GCC) -S $(LIB) main.c -o $(RESULT).s $(INC)
+
+
 .PHONY: clean
 clean:
-	rm -rf $(RESULT)
-	rm -rf *.o
-	rm -rf *.i
+	@echo "Clean-up dorectory - remove all remporary files." 
+	@rm -rf $(RESULT)
+	@rm -rf *.o
+	@rm -rf *.i
+	@rm -rf *.s
