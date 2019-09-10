@@ -9,3 +9,6 @@ int main(int argc, char **argv) {
  
   return 0;
 }
+
+// objdump -S --section=.text binary
+// objdump -S binary
