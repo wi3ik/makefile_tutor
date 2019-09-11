@@ -2,7 +2,8 @@
 
 int main(int argc, char **argv) {
   FILE *f = fopen("binary", "r+b");
-  unsigned int opcode = 0x118c0f; // order should need reverted, 8d (jge) => 8c (jl) [ on Mac ]
+  unsigned int opcode = 0x118c0f; // order should be reverted to compare with value which we see by objdump
+                                  // 8d (jge) => 8c (jl) [ on Mac ]
 
 // http://www.unixwiz.net/techtips/x86-jumps.html
 
