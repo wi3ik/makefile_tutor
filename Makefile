@@ -28,6 +28,7 @@ help:
 	@echo "  all - normal full compilation to prepare resulting binary file."
 	@echo "  preproc - stop after preprocessing."
 	@echo "  asm - stop after assembler file is ready."
+	@echo "  lnk - stop after linker file is ready."	
 	@echo ""
 
 	
@@ -42,6 +43,9 @@ preproc:
 asm:
 	$(GCC) -S $(LIB) main.c -o $(RESULT).s $(INC)
 
+lnk:
+	$(GCC) $(IFDEF) $(LIB) $(SRC) -e $(RESULT) $(INC)
+	
 
 .PHONY: clean
 clean:
