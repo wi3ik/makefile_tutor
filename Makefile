@@ -29,6 +29,7 @@ help:
 	@echo "  preproc - stop after preprocessing."
 	@echo "  asm - stop after assembler file is ready."
 	@echo "  lnk - stop after linker file is ready."	
+	@echo "  lib - compile all (but using static library)"
 	@echo ""
 
 	
@@ -46,6 +47,15 @@ asm:
 lnk:
 	$(GCC) $(IFDEF) $(LIB) $(SRC) -e $(RESULT) $(INC)
 	
+lib: main.c libfib.a
+	@echo "  This won't work for MAC OS  "
+	@echo " https://stackoverflow.com/questions/3801011/ld-library-not-found-for-lcrt0-o-on-osx-10-6-with-gcc-clang-static-flag  "
+	$(GCC) -static main.c -L.  -lfib -o $(RESULT) $(INC)
+
+libfib.a:
+	$(GCC) -c src/fib.c -o calc_fib.o $(INC)
+	ar rcs libfib.a calc_fib.o
+
 
 .PHONY: clean
 clean:
@@ -54,3 +64,4 @@ clean:
 	@rm -rf *.o
 	@rm -rf *.i
 	@rm -rf *.s
+	@rm -rf *.a
